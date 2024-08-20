@@ -7,9 +7,9 @@ on:
     inputs:
       # Change this value
       solution_name:
-        description: 'name of the solution to worked on from Power Platform'
+        description: 'PIR'
         required: true
-        default: ALMLab
+        default: PIR
        #Do Not change these values
       solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
@@ -27,7 +27,7 @@ env:
 #edit your values here
   ENVIRONMENT_URL: 'https://org82e3564c.crm11.dynamics.com/'
   CLIENT_ID: '2600964d-7cde-ee11-904d-000d3a0b8b2b'
-  TENANT_ID: 'fc6c4557-4994-ee11-be33-002248c5d0a1'
+  
 permissions:
   contents: write
 jobs:
@@ -48,7 +48,7 @@ jobs:
         environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
-        tenant-id: ${{env.TENANT_ID}}
+      
 
 
     - name: export-solution action
@@ -57,7 +57,6 @@ jobs:
         environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
-        tenant-id: ${{env.TENANT_ID}}
         solution-name: ${{ github.event.inputs.solution_name }}
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
 
